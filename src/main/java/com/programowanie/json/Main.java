@@ -23,10 +23,18 @@ public class Main {
 
         ObjectMapper mapper = new ObjectMapper();
 
+        // JSON write
         File filename = new File("order.json");
         filename.createNewFile();
         mapper.writeValue(filename, order);
 
+        // JSON read
+        Order readOrders =
+                mapper.readValue(new File("order.json"),
+                        Order.class);
 
+        for (Item items : readOrders.getItemList()) {
+            System.out.println(items.getName());
+        }
     }
 }
